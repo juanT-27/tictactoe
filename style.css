@@ -1,0 +1,23 @@
+
+.gameContainer{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+}
+
+.cell{
+    background-color: blanchedalmond;
+    border: solid 1px black;
+    width: 150px;
+    height: 150px;
+    margin: 1px;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ 
+  
