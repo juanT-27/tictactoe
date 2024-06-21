@@ -1,6 +1,5 @@
 const gameContainer = document.querySelector(".gameContainer");
 
-
 class GameBoard {
   constructor(spaces) {
     this.spaces = spaces;
@@ -57,13 +56,13 @@ class TwoPlayers {
     let player = this.players[this.currenPlayerIndex];
     let values = this.players[this.currenPlayerIndex].value;
     let cellId = parseInt(e.target.getAttribute("id"));
-    this.players[this.currenPlayerIndex].selections.push(cellId)
+    this.players[this.currenPlayerIndex].selections.push(cellId);
     let result = this.board.cellSelectedByplayer(cellId, player, values);
     if (result) {
       this.currenPlayerIndex =
         (this.currenPlayerIndex + 1) % this.players.length;
     }
-    this.checkresult()
+    this.checkresult();
 
     return result;
   }
@@ -79,32 +78,42 @@ class TwoPlayers {
       [0, 4, 8],
       [2, 4, 6],
     ];
-    for(let i = 0; i<this.players.length;i++){
-      for(let j= 0; j<winningCombinations.length;j++){
-        if(winningCombinations[j].every((val)=> players[i].selections.includes(val) )){
-         console.log(winningCombinations[j])
-          alert(`winner`)
+    for (let i = 0; i < this.players.length; i++) {
+      for (let j = 0; j < winningCombinations.length; j++) {
+        if (
+          winningCombinations[j].every((val) =>
+            players[i].selections.includes(val)
+          )
+        ) {
+          console.log(winningCombinations[j]);
+          alert(`winner`);
         }
       }
     }
-
   }
 }
 
 let players = [
-  { player: "one", value: "X", selections:[] },
-  { player: "two", value: "O", selections:[]},
+  { player: "one", value: "X", selections: [] },
+  { player: "two", value: "O", selections: [] },
 ];
 
-let game = new TwoPlayers(players);
-game.start();
+let twoPlayersgame = new TwoPlayers(players);
 
 document.addEventListener("DOMContentLoaded", (e) => {
-
-
   document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("cell")) {
-      game.turns(e);
+    let elementClicked = e.target;
+    if (elementClicked.classList.contains("gameBtn")) {
+      let btnId = elementClicked.getAttribute("id");
+
+      if (btnId === "btn-1") {
+        twoPlayersgame.start();
+      }else{
+        PlvsPc.start()
+      }
+    }
+    if (elementClicked.classList.contains("cell")) {
+      twoPlayersgame.turns(e);
     }
   });
 });
