@@ -1,5 +1,6 @@
 const gameContainer = document.querySelector(".gameContainer");
 
+
 class GameBoard {
   constructor(spaces) {
     this.spaces = spaces;
@@ -42,7 +43,7 @@ class GameBoard {
     return selected;
   }
 }
-class Players {
+class TwoPlayers {
   constructor(players) {
     this.players = players;
     this.currenPlayerIndex = 0;
@@ -57,16 +58,17 @@ class Players {
     let values = this.players[this.currenPlayerIndex].value;
     let cellId = parseInt(e.target.getAttribute("id"));
     this.players[this.currenPlayerIndex].selections.push(cellId)
-    console.log(this.players[this.currenPlayerIndex].selections)
     let result = this.board.cellSelectedByplayer(cellId, player, values);
     if (result) {
       this.currenPlayerIndex =
         (this.currenPlayerIndex + 1) % this.players.length;
     }
+    this.checkresult()
+
     return result;
   }
   checkresult() {
-    let current = this.board.getCells();
+    // let current = this.board.getCells();
     let winningCombinations = [
       [0, 1, 2],
       [3, 4, 5],
@@ -77,27 +79,32 @@ class Players {
       [0, 4, 8],
       [2, 4, 6],
     ];
-    let currentPlayer= this.players[this.currenPlayerIndex].selections
-    winningCombinations.forEach(combination=> {
-     
-    })
-    // verificar que 3 de las selecciones de un jugador sean las mismas de un array sin importar el orden
-// rrecorrer los dos arrays= si en el array de player se encuentran 3 iguales que en winning = return ganador 
+    for(let i = 0; i<this.players.length;i++){
+      for(let j= 0; j<winningCombinations.length;j++){
+        if(winningCombinations[j].every((val)=> players[i].selections.includes(val) )){
+         console.log(winningCombinations[j])
+          alert(`winner`)
+        }
+      }
+    }
+
   }
 }
 
 let players = [
   { player: "one", value: "X", selections:[] },
-  { player: "pc", value: "O", selections:[]},
+  { player: "two", value: "O", selections:[]},
 ];
-let game = new Players(players);
+
+let game = new TwoPlayers(players);
 game.start();
 
 document.addEventListener("DOMContentLoaded", (e) => {
+
+
   document.addEventListener("click", (e) => {
     if (e.target.classList.contains("cell")) {
       game.turns(e);
-      game.checkresult();
     }
   });
 });
