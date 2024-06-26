@@ -1,23 +1,232 @@
-
-.gameContainer{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    width: 500px;
+/* RESET */
+:root {
+  --font-0: clamp(1rem, 0.8043rem + 0.9783vi, 1.5625rem);
+  --font-1: clamp(1.2rem, 0.938rem + 1.3098vi, 1.9531rem);
+  --font-2: clamp(1.44rem, 1.0917rem + 1.7416vi, 2.4414rem);
+  --font-3: clamp(1.728rem, 1.2676rem + 2.3022vi, 3.0518rem);
+  --font-4: clamp(2.0736rem, 1.468rem + 3.028vi, 3.8147rem);
+  --font-5: clamp(2.4883rem, 1.6953rem + 3.9653vi, 4.7684rem);
+  --color-darker: #264653;
+  --color-darker-2: #2a9d8f;
+  --color-light: #e9c46a;
+  --secondary-color: #f4a261;
+  --secondary-color2: #e76f51;
+  --white-color: blanchedalmond;
 }
 
-.cell{
-    background-color: blanchedalmond;
-    border: solid 1px black;
-    width: 150px;
-    height: 150px;
-    margin: 1px;
-    font-size: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Reset */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+li {
+  list-style: none;
+}
+
+a,
+img,
+span,
+button,
+ion-icon {
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Playwrite NG Modern", cursive;
+  font-optical-sizing: auto;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: var(--font-4);
+}
+h2 {
+  font-size: var(--font-3);
+}
+h3 {
+  font-size: var(--font-3);
+}
+h4 {
+  font-size: var(--font-2);
+}
+h5 {
+  font-size: var(--font-2);
+}
+h6 {
+  font-size: var(--font-1);
+}
+
+p,
+a,
+li,
+button {
+  font-family: "Playwrite NG Modern", cursive;
+  font-optical-sizing: auto;
+}
+
+p {
+  font-size: var(--font-3);
+}
+button {
+  font-size: var(--font-3);
+  font-weight: 300;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input,
+button {
+  border: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  outline: none;
+}
+
+address {
+  font-style: normal;
+}
+
+html {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 10px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-light);
+  color: var(--color-darker);
+  line-height: 1.8;
+}
+
+/* `HEADER */
+
+header {
+  width: 100%;
+  margin-top: 2rem;
+
+  border-bottom: solid 1px black;
+  background-color: var(--color-darker);
+  color: var(--color-light);
+  text-align: center;
+}
+
+/* GAME INIT */
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hero {
+  margin: 3rem 0 0 0;
+  padding-bottom: 3rem;
+  text-align: center;
+}
+
+/* game container */
+.gameBtns-container {
+  width: 70%;
+  padding: 0.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid blue;
+}
+
+.gameBtn {
+  background-color: var(--color-darker-2);
+  width: 10rem;
+  border-radius: 1rem;
+  padding: 0.3rem;
+  color: var(--white-color);
+}
+
+.gameContainer {
+  width: 300px;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 90px);
  
-  
+  align-items: center;
+  background-color: var(--color-darker-2);
+  border: 1px solid black;
+  position: relative;
+}
+
+.gameBtn {
+  margin-left: 1rem;
+}
+
+.cell {
+    justify-self: center;
+  background-color: blanchedalmond;
+  border: solid 1px black;
+  width: 100%;
+  height: 90px;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* MODAL */
+.modal {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+.modalresult {
+  width: 90vw;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 101;
+  opacity: 1;
+
+  border-radius: 0.5rem;
+  background-color: rgb(162, 250, 231);
+  transition: transform 0.5s ease;
+  /* transition-delay: 5ss */
+  transform: translateY(100%);
+}
+
+.modalImg {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  background-image: url(./assets/medal.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.modalresult.active {
+  transform: translateY(0);
+}

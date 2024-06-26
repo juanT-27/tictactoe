@@ -1,29 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>tictactoe</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <header>
-        <H1>TIC TAC TOE</H1>
+      <h1>TIC TAC TOE</h1>
     </header>
     <main>
-        <section class="hero">
-            <h2>Welcome</h2>
-            <p>You can play alone, or against the computer</p>
-        </section>
-        <section class="gameBtns-container">
-            <button class="gameBtn" id="btn-1">2 players</button>
-            <button class="gameBtn" id="btn2">Player vs PC</button>
-        </section>
-        <div class="gameContainer">
-            
-        </div>
+      <section class="hero">
+        <h2>Welcome</h2>
+        <p>You can play alone, or against the computer</p>
+      </section>
+      <section class="gameBtns-container">
+        <button class="gameBtn" id="btn-1">2 players</button>
+        <button class="gameBtn" id="btn2">Player vs PC</button>
+      </section>
+      <div class="gameContainer"></div>
     </main>
-   
+    <div class="modal">
+      <div class="modalresult">
+        <div class="modalImg">
+          <img src="" alt="" data-img-result />
+        </div>
+        <h1 class="winner" data-result-Title></h1>
+        <h3 class="result">is the winner</h3>
+        <button class="gameBtn restart ">restart</button>
+      </div>
+    </div>
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
